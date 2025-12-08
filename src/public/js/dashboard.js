@@ -3,7 +3,6 @@ const reportContainer = document.getElementById('reportContainer');
 
 const DATE_TABLE = 'dCalendario';
 const DATE_COLUMN = 'Id Data';
-const SLICER_NAME = '82ec0c83f9d9cb6e72e8';
 
 const USER_TABLE = 'dResponsavel';   // ajuste para o nome da tabela no PBI
 const USER_COLUMN = 'RESPONSAVEL';
@@ -143,6 +142,21 @@ async function applyUserNameFilter(report, userName) {
   }
 }
 
+// ===== marcar item ativo do menu =====
+
+function setActiveModule(module) {
+  const items = document.querySelectorAll('.sidebar-item');
+
+  items.forEach(i => {
+    const m = i.getAttribute('data-module');
+    if (m === module) {
+      i.classList.add('active');
+    } else if (m !== 'USERS') {
+      i.classList.remove('active');
+    }
+  });
+}
+
 // ===== Carregar relatório para um módulo =====
 
 async function loadReport(moduleKey) {
@@ -150,13 +164,41 @@ async function loadReport(moduleKey) {
 
   try {
     const resp = await fetch(`/api/powerbi/embed-config?module=${currentModule}`);
-    if (!resp.ok) throw new Error('Falha ao buscar embed-config');
+
+    if (resp.status === 403) {
+      const msg = `Você não tem permissão para visualizar o relatório ${currentModule}.`;
+      console.warn(msg);
+      if (reportContainer) {
+        reportContainer.innerHTML = `
+          <div style="
+            padding:16px;
+            font-size:0.9rem;
+            color:#fecaca;
+            background:rgba(127,29,29,0.35);
+            border-radius:10px;
+            border:1px solid rgba(248,113,113,0.7);
+          ">
+            ${msg}
+          </div>
+        `;
+      }
+      // não altera botão ativo nem URL
+      return;
+    }
+
+    if (!resp.ok) {
+      throw new Error('Falha ao buscar embed-config');
+    }
 
     const data = await resp.json();
     const { reportId, embedUrl, accessToken, user, module } = data;
 
-    // atualiza currentModule com o que veio do backend (caso normalize)
     currentModule = module;
+
+    // sucesso → atualiza URL e botão ativo
+    const newUrl = `${window.location.pathname}?module=${currentModule}`;
+    window.history.pushState({}, '', newUrl);
+    setActiveModule(currentModule);
 
     const config = {
       type: 'report',
@@ -178,39 +220,37 @@ async function loadReport(moduleKey) {
     report.on('loaded', async () => {
       console.log(`Relatório carregado para módulo: ${currentModule}`);
 
+      // debug: listar visuais
+      const pages = await report.getPages();
+      const activePage = pages.find(p => p.isActive);
 
-        // <<< AQUI: listar todos os visuais da página ativa >>>
-        const pages = await report.getPages();
-        const activePage = pages.find(p => p.isActive);
-
-        if (activePage) {
-          const visuals = await activePage.getVisuals();
-          console.log('VISUAIS DA PÁGINA ATIVA:');
-          visuals.forEach(v => {
-            console.log({
-              name: v.name,
-              title: v.title,
-              type: v.type
-            });
+      if (activePage) {
+        const visuals = await activePage.getVisuals();
+        console.log('VISUAIS DA PÁGINA ATIVA:');
+        visuals.forEach(v => {
+          console.log({
+            name: v.name,
+            title: v.title,
+            type: v.type
           });
-        } else {
-          console.warn('Nenhuma página ativa encontrada ao listar visuais.');
-        }
-        // <<< FIM DO BLOCO DE LISTAGEM >>>
-
+        });
+      } else {
+        console.warn('Nenhuma página ativa encontrada ao listar visuais.');
+      }
 
       const range = getCurrentMonthRange();
       const dateFilter = buildDateFilter(range);
-      
-      // Filtro de RELATÓRIO (data): por enquanto apenas GDR
+
+      // filtros por módulo
       switch (currentModule) {
-        case 'GDR': {  
-          const slicerName = "82ec0c83f9d9cb6e72e8";  // SLICER GDR
+        case 'GDR': {
+          const slicerName = '82ec0c83f9d9cb6e72e8';
           await applyDateSlicer(report, dateFilter, slicerName);
+          await applyReportDateFilter(report, dateFilter, range);
           break;
         }
         case 'PLEX': {
-          const slicerName = "2d104d98970d3a7dc1f5";  // SLICER PLEX
+          const slicerName = '2d104d98970d3a7dc1f5';
           await applyDateSlicer(report, dateFilter, slicerName);
           if (user && user.nome) {
             await applyUserNameFilter(report, user.nome);
@@ -218,15 +258,14 @@ async function loadReport(moduleKey) {
           break;
         }
         case 'UGB': {
-          const slicerName = "775b9532019047221800";  // SLICER PLEX
+          const slicerName = '775b9532019047221800';
           await applyDateSlicer(report, dateFilter, slicerName);
           break;
         }
         default:
-          console.warn("Módulo desconhecido:", currentModule);
+          console.warn('Módulo desconhecido:', currentModule);
       }
 
-      // Filtro de DEPARTAMENTO: mantido para todos (se desejar mudar, condicionar aqui)
       if (currentModule === 'GDR') {
         await applyDepartmentFilter(report, user && user.departamento);
       }
@@ -245,6 +284,8 @@ async function loadReport(moduleKey) {
   }
 }
 
+// ===== Menu lateral =====
+
 function setupSidebarNavigation() {
   const items = document.querySelectorAll('.sidebar-item');
 
@@ -252,7 +293,7 @@ function setupSidebarNavigation() {
     item.addEventListener('click', evt => {
       const module = item.getAttribute('data-module');
 
-      // USERS → navegação normal para /users
+      // USERS → deixa navegar normal pra /users
       if (module === 'USERS') {
         return;
       }
@@ -260,15 +301,7 @@ function setupSidebarNavigation() {
       // PLEX / GDR / UGB → SPA
       evt.preventDefault();
 
-      // Atualiza visualmente o item ativo
-      items.forEach(i => i.classList.remove('active'));
-      item.classList.add('active');
-
-      // Atualiza a URL (sem recarregar página)
-      const newUrl = `${window.location.pathname}?module=${module}`;
-      window.history.pushState({}, '', newUrl);
-
-      // Carrega o relatório
+      // não mexe em active nem URL aqui
       loadReport(module);
     });
   });
@@ -277,20 +310,9 @@ function setupSidebarNavigation() {
 // ===== inicialização =====
 setupSidebarNavigation();
 
-// lê ?module=XXX da URL (se vier de /users)
 const params = new URLSearchParams(window.location.search);
 const initialModule = params.get('module') || 'PLEX';
 
-// marca o item correto como ativo
-const sidebarItems = document.querySelectorAll('.sidebar-item');
-sidebarItems.forEach(i => {
-  const module = i.getAttribute('data-module');
-  if (module === initialModule) {
-    i.classList.add('active');
-  } else if (module !== 'USERS') {
-    i.classList.remove('active');
-  }
-});
-
-// carrega o relatório do módulo inicial
+// marca o item inicial e carrega
+setActiveModule(initialModule);
 loadReport(initialModule);
