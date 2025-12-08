@@ -1,0 +1,54 @@
+[
+  {
+    "email": "adm@empresa.com",
+    "nome": "Administrador",
+    "passwordHash": "$2b$10$xtaJSgvFaP31E8ckjCKPUeFpXRT97yDE1SR.ZElvG/ZabVGAY8hfO",
+    "departamento": "ADM",
+    "ativo": true
+  },
+  {
+    "nome": "ELTON ALVES",
+    "cpf": "07468951357",
+    "email": "elton@bnel.com.br",
+    "passwordHash": "$2b$10$8Spd.1YVV4CY64QkBj3AZO0UgefX41Z1K6IZhS6GvO8FJR4XSdrS.",
+    "departamentos": [
+      "ADM",
+      "GDR",
+      "UGB"
+    ],
+    "relatorios": [
+      "PLEX",
+      "GDR",
+      "UGB"
+    ],
+    "ativo": true
+  },
+  {
+    "nome": "ABNER COSTA",
+    "cpf": "61148625380",
+    "email": "abner@bnel.com.br",
+    "passwordHash": "$2b$10$TH.Lfrl6gO7jr8q9sbFqJ.6Ge.mX.wKijBeygmll/jy7e.hpA68hi",
+    "departamentos": [
+      "ADM",
+      "GDR",
+      "UGB"
+    ],
+    "relatorios": [
+      "PLEX"
+    ],
+    "ativo": true
+  },
+  {
+    "nome": "GLEYSON MESQUITA CARDOSO",
+    "cpf": "99999999999",
+    "email": "gleyson@bnel.com.br",
+    "passwordHash": "$2b$10$ahS6.vN8HchInQgQj0yZmOpcs2rK7fnU2DvirIBdOAck85IIYrekq",
+    "departamentos": [],
+    "relatorios": [
+      "PLEX",
+      "GDR",
+      "UGB"
+    ],
+    "ativo": true
+  }
+]

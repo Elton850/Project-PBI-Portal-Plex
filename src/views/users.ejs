@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Usuários | Portal</title>
+  <link rel="stylesheet" href="/css/dashboard.css" />
+</head>
+<body class="dashboard-page">
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="/img/logo.png" alt="Logo da empresa">
+    </div>
+
+    <nav class="sidebar-menu">
+        <a href="/dashboard?module=PLEX" class="sidebar-item" data-module="PLEX">
+        PLEX
+        </a>
+
+        <a href="/dashboard?module=GDR" class="sidebar-item" data-module="GDR">
+        Gerenciamento Diário da Rotina
+        </a>
+
+        <a href="/dashboard?module=UGB" class="sidebar-item" data-module="UGB">
+        UGB
+        </a>
+
+        <a href="/users" class="sidebar-item active" data-module="USERS">
+        Usuários
+        </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="/logout" class="sidebar-logout">Sair</a>
+    </div>
+  </aside>
+
+  <!-- CONTEÚDO -->
+  <main class="content">
+
+    <header class="dashboard-header">
+      <div class="dashboard-header-left">
+        <h1 class="dashboard-title">Gestão de Usuários</h1>
+        <p class="dashboard-subtitle">Controle dos logins que acessam o portal</p>
+      </div>
+
+      <div class="dashboard-header-right">
+        <span class="dashboard-user-email"><%= user.email %></span>
+      </div>
+    </header>
+
+    <section class="dashboard-panel">
+      <div class="dashboard-panel-header">
+        <div>
+            <h2 class="dashboard-panel-title">Usuários cadastrados</h2>
+            <p class="dashboard-panel-subtitle">
+            Estes são os logins configurados para acessar o portal.
+            </p>
+        </div>
+
+        <a href="/users/new" class="btn-primary">Novo usuário</a>
+        </div>
+
+      <div class="users-table-wrapper">
+        <table class="users-table">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>E-mail</th>
+            <th>Departamentos</th>
+            <th>Relatórios</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+            <tbody>
+            <% if (!users || users.length === 0) { %>
+            <tr>
+                <td colspan="6" class="users-empty">
+                Nenhum usuário cadastrado no momento.
+                </td>
+            </tr>
+            <% } else { %>
+            <% users.forEach(function(u) { %>
+                <tr>
+                <td><%= u.nome %></td>
+                <td><%= u.cpf %></td>
+                <td><%= u.email %></td>
+
+                <td>
+                    <% if (u.departamentos && u.departamentos.length > 0) { %>
+                    <%= u.departamentos.join(', ') %>
+                    <% } else { %>
+                    -
+                    <% } %>
+                </td>
+
+                <td>
+                    <% if (u.relatorios && u.relatorios.length > 0) { %>
+                    <%= u.relatorios.join(', ') %>
+                    <% } else { %>
+                    -
+                    <% } %>
+                </td>
+
+                <td>
+                    <% if (u.ativo) { %>
+                    <span class="badge-status badge-status--active">Ativo</span>
+                    <% } else { %>
+                    <span class="badge-status badge-status--inactive">Inativo</span>
+                    <% } %>
+                </td>
+                </tr>
+            <% }) %>
+            <% } %>
+            </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>

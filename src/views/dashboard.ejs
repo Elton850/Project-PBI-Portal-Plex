@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard - Portal</title>
+  <link rel="stylesheet" href="/css/dashboard.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/powerbi-client/2.23.1/powerbi.js"></script>
+</head>
+<body class="dashboard-page">
+
+<div class="layout">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="./img/logo.png" alt="Logo da empresa">
+    </div>
+
+    <nav class="sidebar-menu">
+      <a href="/dashboard?module=PLEX" class="sidebar-item" data-module="PLEX">
+        PLEX
+      </a>
+
+      <a href="/dashboard?module=GDR" class="sidebar-item" data-module="GDR">
+        Gerenciamento Diário da Rotina
+      </a>
+
+      <a href="/dashboard?module=UGB" class="sidebar-item" data-module="UGB">
+        UGB
+      </a>
+
+      <a href="/users" class="sidebar-item" data-module="USERS">
+        Usuários
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="/logout" class="sidebar-logout">Sair</a>
+    </div>
+  </aside>
+
+  <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+  <main class="content">
+
+    <header class="dashboard-header">
+      <div class="dashboard-header-left">
+        <h1 class="dashboard-title">Portal de Dashboards</h1>
+        <p class="dashboard-subtitle">Bem-vindo, <%= user.nome %></p>
+      </div>
+
+      <div class="dashboard-header-right">
+        <span class="dashboard-user-email"><%= user.email %></span>
+        <a
+          href="https://t.me/seu_bot_ou_canal"
+          class="btn-telegram"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="tg-icon">✈️</span>
+          Telegram
+        </a>
+      </div>
+    </header>
+
+
+    <section class="dashboard-panel">
+      <div class="dashboard-panel-header">
+        <h2 class="dashboard-panel-title">Visão Geral</h2>
+        <p class="dashboard-panel-subtitle">Filtros dinâmicos aplicados automaticamente</p>
+      </div>
+
+      <div id="reportContainer" class="dashboard-report-container"></div>
+    </section>
+
+  </main>
+</div>
+
+<script src="/js/dashboard.js"></script>
+</body>
+
+</html>
