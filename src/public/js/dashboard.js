@@ -123,7 +123,7 @@ async function applyDepartmentSlicer(report, departamentos) {
       column: 'DEPARTAMENTO'
     },
     operator: 'In',
-    values: filtrosDep,               // <- values: filtrosDep
+    values: filtrosDep,
     filterType: models.FilterType.Basic
   };
 
