@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Departamentos | Portal</title>
+  <link rel="stylesheet" href="/css/dashboard.css" />
+</head>
+<body class="dashboard-page">
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="/img/logo.png" alt="Logo da empresa">
+    </div>
+    <nav class="sidebar-menu">
+      <a href="/dashboard?module=PLEX" class="sidebar-item" data-module="PLEX">PLEX</a>
+      <a href="/dashboard?module=GDR" class="sidebar-item" data-module="GDR">Gerenciamento Diário da Rotina</a>
+      <a href="/dashboard?module=UGB" class="sidebar-item" data-module="UGB">UGB</a>
+      
+        <% if (user && user.isAdmin) { %>
+            <a href="/users" class="sidebar-item" data-module="USERS">Usuários</a>
+            <a href="/departments" class="sidebar-item" data-module="DEPARTMENTS">Departamentos</a>
+        <% } %>
+    </nav>
+    <div class="sidebar-footer"><a href="/logout" class="sidebar-logout">Sair</a></div>
+  </aside>
+
+  <main class="content">
+    <header class="dashboard-header">
+      <div class="dashboard-header-left">
+        <h1 class="dashboard-title">Departamentos</h1>
+        <p class="dashboard-subtitle">Cadastro de departamentos do portal</p>
+      </div>
+      <div class="dashboard-header-right">
+        <span class="dashboard-user-email"><%= user.email %></span>
+      </div>
+    </header>
+
+    <section class="dashboard-panel">
+      <div class="dashboard-panel-header">
+        <div>
+          <h2 class="dashboard-panel-title">Lista</h2>
+          <p class="dashboard-panel-subtitle">IDs usados no filtro do Power BI</p>
+        </div>
+        <a href="/departments/new" class="btn-primary">Novo departamento</a>
+      </div>
+
+      <table class="departments-table">
+        <thead>
+            <tr>
+            <th class="col-id">ID</th>
+            <th class="col-name">Nome</th>
+            <th class="col-actions">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (!departments || departments.length === 0) { %>
+            <tr>
+                <td colspan="3" class="table-empty">
+                Nenhum departamento cadastrado.
+                </td>
+            </tr>
+            <% } else { %>
+            <% departments.forEach(d => { %>
+                <tr>
+                <td class="col-id"><%= d.id %></td>
+                <td class="col-name"><%= d.nome %></td>
+                <td class="col-actions">
+                    <a class="btn-secondary btn-sm" href="/departments/<%= d.id %>/edit">
+                    Editar
+                    </a>
+
+                    <form method="POST"
+                        action="/departments/<%= d.id %>/delete"
+                        class="inline-form">
+                    <button class="btn-danger btn-sm" type="submit">
+                        Excluir
+                    </button>
+                    </form>
+                </td>
+                </tr>
+            <% }) %>
+            <% } %>
+        </tbody>
+        </table>
+    </section>
+  </main>
+</div>
+</body>
+</html>

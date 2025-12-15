@@ -8,6 +8,7 @@ const authRoutes = require('./routes/authRoutes');
 const dashboardRoutes = require('./routes/dashboardRoutes');
 const powerbiRoutes = require('./routes/powerbiRoutes');
 const usersRoutes = require('./routes/usersRoutes');
+const departmentsRoutes = require('./routes/departmentsRoutes');
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(authRoutes);
 app.use(dashboardRoutes);
 app.use(powerbiRoutes);
 app.use(usersRoutes);
+app.use(departmentsRoutes);
 
 // Raiz
 app.get('/', (req, res) => {

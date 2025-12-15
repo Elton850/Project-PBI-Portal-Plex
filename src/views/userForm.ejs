@@ -28,6 +28,10 @@
       <a href="/users" class="sidebar-item active" data-module="USERS">
         Usuários
       </a>
+
+      <a href="/departments" class="sidebar-item" data-module="DEPARTMENTS">
+        Departamentos
+      </a>
     </nav>
 
     <div class="sidebar-footer">
@@ -80,23 +84,20 @@
         </div>
 
         <!-- MÚLTIPLOS DEPARTAMENTOS -->
+        
         <div class="form-row">
-            <label>Departamentos</label>
+          <label>Departamentos</label>
 
-            <label class="checkbox-label">
-            <input type="checkbox" name="departamentos" value="ADM" />
-            ADM
-            </label>
-
-            <label class="checkbox-label">
-            <input type="checkbox" name="departamentos" value="GDR" />
-            GDR
-            </label>
-
-            <label class="checkbox-label">
-            <input type="checkbox" name="departamentos" value="UGB" />
-            UGB
-            </label>
+          <% if (!departments || departments.length === 0) { %>
+            <div style="opacity:.8;">Nenhum departamento cadastrado. Cadastre em “Departamentos”.</div>
+          <% } else { %>
+            <% departments.forEach(d => { %>
+              <label class="checkbox-label">
+                <input type="checkbox" name="departamentos" value="<%= d.id %>" />
+                <%= d.nome %>
+              </label>
+            <% }) %>
+          <% } %>
         </div>
 
         <!-- MÚLTIPLOS RELATÓRIOS -->
@@ -124,6 +125,13 @@
             <input type="checkbox" name="ativo" checked />
             Usuário ativo
             </label>
+        </div>
+
+        <div class="form-row form-row-inline">
+          <label class="checkbox-label">
+            <input type="checkbox" name="isAdmin" />
+            Admin
+          </label>
         </div>
 
         <div class="form-actions">

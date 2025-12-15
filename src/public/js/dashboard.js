@@ -216,7 +216,7 @@ function setupSidebarNavigation() {
     item.addEventListener('click', evt => {
       const module = item.getAttribute('data-module');
 
-      if (module === 'USERS') return; // deixa carregar pagina normal
+      if (module === 'USERS' || module === 'DEPARTMENTS') return; // deixa carregar pagina normal
       evt.preventDefault();
       loadReport(module);
     });

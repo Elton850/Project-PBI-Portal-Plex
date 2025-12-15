@@ -29,9 +29,10 @@
         UGB
       </a>
 
-      <a href="/users" class="sidebar-item" data-module="USERS">
-        Usuários
-      </a>
+      <% if (user && user.isAdmin) { %>
+        <a href="/users" class="sidebar-item" data-module="USERS">Usuários</a>
+        <a href="/departments" class="sidebar-item" data-module="DEPARTMENTS">Departamentos</a>
+      <% } %></a>
     </nav>
 
     <div class="sidebar-footer">

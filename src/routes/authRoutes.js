@@ -37,6 +37,7 @@ router.post('/login', async (req, res) => {
     nome: user.nome,
     departamento: user.departamentos || [],
       relatorios: user.relatorios || [],
+      isAdmin: !!user.isAdmin
   };
 
   const token = jwt.sign(tokenPayload, jwtSecret, {

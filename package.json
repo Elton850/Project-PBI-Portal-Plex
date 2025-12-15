@@ -20,5 +20,13 @@
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3"
   },
-  "description": ""
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Elton850/Project-PBI-Portal-Plex.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Elton850/Project-PBI-Portal-Plex/issues"
+  },
+  "homepage": "https://github.com/Elton850/Project-PBI-Portal-Plex#readme"
 }

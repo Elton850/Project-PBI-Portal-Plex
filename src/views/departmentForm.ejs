@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title><%= dep ? 'Editar' : 'Novo' %> Departamento | Portal</title>
+  <link rel="stylesheet" href="/css/dashboard.css" />
+</head>
+<body class="dashboard-page">
+<div class="layout">
+  <aside class="sidebar">
+    <nav class="sidebar-menu">
+      <a href="/dashboard?module=PLEX" class="sidebar-item" data-module="PLEX">PLEX</a>
+      <a href="/dashboard?module=GDR" class="sidebar-item" data-module="GDR">Gerenciamento Diário da Rotina</a>
+      <a href="/dashboard?module=UGB" class="sidebar-item" data-module="UGB">UGB</a>
+      <a href="/users" class="sidebar-item" data-module="USERS">Usuários</a>
+      <a href="/departments" class="sidebar-item active" data-module="DEPARTMENTS">Departamentos</a>
+    </nav>
+    <div class="sidebar-footer"><a href="/logout" class="sidebar-logout">Sair</a></div>
+  </aside>
+
+  <main class="content">
+    <header class="dashboard-header">
+      <div class="dashboard-header-left">
+        <h1 class="dashboard-title"><%= dep ? 'Editar departamento' : 'Novo departamento' %></h1>
+      </div>
+      <div class="dashboard-header-right">
+        <span class="dashboard-user-email"><%= user.email %></span>
+      </div>
+    </header>
+
+    <section class="dashboard-panel">
+      <% if (error) { %>
+        <p class="users-form-error"><%= error %></p>
+      <% } %>
+
+      <form class="user-form" method="POST" action="<%= dep ? '/departments/' + dep.id + '/edit' : '/departments/new' %>">
+        <div class="form-row">
+          <label for="id">ID</label>
+          <input id="id" name="id" <%= dep ? 'disabled' : '' %> value="<%= dep ? dep.id : '' %>" placeholder="Ex: ADM" required />
+        </div>
+
+        <div class="form-row">
+          <label for="nome">Nome</label>
+          <input id="nome" name="nome" value="<%= dep ? dep.nome : '' %>" placeholder="Ex: Administrativo" required />
+        </div>
+
+        <div class="form-actions">
+          <a href="/departments" class="btn-secondary">Cancelar</a>
+          <button class="btn-primary" type="submit">Salvar</button>
+        </div>
+      </form>
+    </section>
+  </main>
+</div>
+</body>
+</html>
