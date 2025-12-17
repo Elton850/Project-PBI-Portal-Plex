@@ -1,0 +1,18 @@
+/* ===== Esqueci minha senha ===== */
+
+.forgot-password {
+  margin-top: 14px;
+  text-align: center;
+}
+
+.forgot-password a {
+  font-size: 0.85rem;
+  color: #93c5fd; /* azul claro */
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.forgot-password a:hover {
+  color: #bfdbfe;
+  text-decoration: underline;
+}

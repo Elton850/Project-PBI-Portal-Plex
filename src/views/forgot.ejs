@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Reset de Senha | Portal</title>
+  <link rel="stylesheet" href="/css/forgot.css" />
+</head>
+<body>
+
+  <div class="forgot-container">
+    <h1>Reset de senha</h1>
+    <p>
+      PF: informe o CPF.<br />
+      PJ: informe o e-mail.
+    </p>
+
+    <form method="POST" action="/forgot">
+      <label for="cpf">CPF (PF)</label>
+      <input id="cpf" name="cpf" placeholder="000.000.000-00" />
+
+      <label for="email">E-mail (PJ)</label>
+      <input id="email" name="email" type="email" placeholder="email@empresa.com" />
+
+      <label for="novaSenha">Nova senha</label>
+      <input id="novaSenha" name="novaSenha" type="password" required />
+
+      <div class="forgot-actions">
+        <button type="submit">Resetar</button>
+        <a href="/login">Voltar</a>
+      </div>
+
+      <% if (error) { %>
+        <div class="forgot-error"><%= error %></div>
+      <% } %>
+
+      <% if (ok) { %>
+        <div class="forgot-success"><%= ok %></div>
+      <% } %>
+    </form>
+  </div>
+
+</body>
+</html>

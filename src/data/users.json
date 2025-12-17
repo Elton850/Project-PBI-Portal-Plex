@@ -1,9 +1,9 @@
 [
   {
     "nome": "mestre",
-    "cpf": "99999999999",
+    "cpf": null,
     "email": "mestre@bnel.com.br",
-    "passwordHash": "$2b$10$xtaJSgvFaP31E8ckjCKPUeFpXRT97yDE1SR.ZElvG/ZabVGAY8hfO",
+    "passwordHash": "$2b$10$x1dGbmBDOLVwxc0iKJPt7uXfcE3I5cocdHQbS3cbCZ0qRj46MAOCq",
     "departamento": [],
     "relatorios": [
       "PLEX",
@@ -11,22 +11,24 @@
       "UGB"
     ],
     "ativo": true,
-    "isAdmin":true
+    "isAdmin": true,
+    "tipoPessoa": "PJ",
+    "departamentos": []
   },
   {
     "nome": "ELTON ALVES",
     "cpf": "07468951357",
     "email": "elton@bnel.com.br",
     "passwordHash": "$2b$10$8Spd.1YVV4CY64QkBj3AZO0UgefX41Z1K6IZhS6GvO8FJR4XSdrS.",
-    "departamentos": [
-      "INOVAÇÃO G&G"
-    ],
+    "departamentos": [],
     "relatorios": [
       "PLEX",
       "GDR",
       "UGB"
     ],
-    "ativo": true
+    "ativo": true,
+    "tipoPessoa": "PF",
+    "isAdmin": false
   },
   {
     "nome": "ABNER COSTA",
@@ -62,9 +64,13 @@
     "email": "teste@empresa.com",
     "passwordHash": "$2b$10$bEZCgt/1WCfE.WvRzq0GWudbhfdyfJ0YQumbYzGjM3ykwuW1jC34i",
     "departamentos": [
-      "TESTE"
+      "ADM"
     ],
-    "relatorios": [],
-    "ativo": true
+    "relatorios": [
+      "GDR"
+    ],
+    "ativo": true,
+    "tipoPessoa": "PF",
+    "isAdmin": false
   }
 ]

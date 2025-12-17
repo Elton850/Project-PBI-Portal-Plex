@@ -16,22 +16,14 @@
     </div>
 
     <nav class="sidebar-menu">
-        <a href="/dashboard?module=PLEX" class="sidebar-item" data-module="PLEX">
-        PLEX
-        </a>
+      <a href="/dashboard?module=PLEX" class="sidebar-item" data-module="PLEX">PLEX</a>
+      <a href="/dashboard?module=GDR" class="sidebar-item" data-module="GDR">Gerenciamento Diário da Rotina</a>
+      <a href="/dashboard?module=UGB" class="sidebar-item" data-module="UGB">UGB</a>
 
-        <a href="/dashboard?module=GDR" class="sidebar-item" data-module="GDR">
-        Gerenciamento Diário da Rotina
-        </a>
-
-        <a href="/dashboard?module=UGB" class="sidebar-item" data-module="UGB">
-        UGB
-        </a>
-
-        <% if (user && user.isAdmin) { %>
-          <a href="/users" class="sidebar-item" data-module="USERS">Usuários</a>
-          <a href="/departments" class="sidebar-item" data-module="DEPARTMENTS">Departamentos</a>
-        <% } %>
+      <% if (user && user.isAdmin) { %>
+        <a href="/users" class="sidebar-item active" data-module="USERS">Usuários</a>
+        <a href="/departments" class="sidebar-item" data-module="DEPARTMENTS">Departamentos</a>
+      <% } %>
     </nav>
 
     <div class="sidebar-footer">
@@ -56,71 +48,87 @@
     <section class="dashboard-panel">
       <div class="dashboard-panel-header">
         <div>
-            <h2 class="dashboard-panel-title">Usuários cadastrados</h2>
-            <p class="dashboard-panel-subtitle">
-            Estes são os logins configurados para acessar o portal.
-            </p>
+          <h2 class="dashboard-panel-title">Usuários cadastrados</h2>
+          <p class="dashboard-panel-subtitle">Estes são os logins configurados para acessar o portal.</p>
         </div>
 
         <% if (user && user.isAdmin) { %>
           <a href="/users/new" class="btn-primary">Novo usuário</a>
         <% } %>
-
-        </div>
+      </div>
 
       <div class="users-table-wrapper">
         <table class="users-table">
-        <thead>
-        <tr>
-            <th>Nome</th>
-            <th>CPF</th>
-            <th>E-mail</th>
-            <th>Departamentos</th>
-            <th>Relatórios</th>
-            <th>Status</th>
-        </tr>
-        </thead>
-            <tbody>
-            <% if (!users || users.length === 0) { %>
+          <thead>
             <tr>
-                <td colspan="6" class="users-empty">
-                Nenhum usuário cadastrado no momento.
-                </td>
+              <th>Nome</th>
+              <th>Tipo</th>
+              <th>CPF</th>
+              <th>E-mail</th>
+              <th>Departamentos</th>
+              <th>Relatórios</th>
+              <th>Status</th>
+              <% if (user && user.isAdmin) { %>
+                <th style="width:180px;">Ações</th>
+              <% } %>
             </tr>
+          </thead>
+
+          <tbody>
+            <% if (!users || users.length === 0) { %>
+              <tr>
+                <td colspan="<%= (user && user.isAdmin) ? 8 : 7 %>" class="users-empty">
+                  Nenhum usuário cadastrado no momento.
+                </td>
+              </tr>
             <% } else { %>
-            <% users.forEach(function(u) { %>
+
+              <% users.forEach(function(u) { %>
                 <tr>
-                <td><%= u.nome %></td>
-                <td><%= u.cpf %></td>
-                <td><%= u.email %></td>
+                  <td><%= u.nome %></td>
+                  <td><%= (u.tipoPessoa || 'PF') %></td>
+                  <td><%= u.cpf ? u.cpf : '-' %></td>
+                  <td><%= u.email %></td>
 
-                <td>
+                  <td>
                     <% if (u.departamentos && u.departamentos.length > 0) { %>
-                    <%= u.departamentos.join(', ') %>
+                      <%= u.departamentos.join(', ') %>
                     <% } else { %>
-                    -
+                      -
                     <% } %>
-                </td>
+                  </td>
 
-                <td>
+                  <td>
                     <% if (u.relatorios && u.relatorios.length > 0) { %>
-                    <%= u.relatorios.join(', ') %>
+                      <%= u.relatorios.join(', ') %>
                     <% } else { %>
-                    -
+                      -
                     <% } %>
-                </td>
+                  </td>
 
-                <td>
+                  <td>
                     <% if (u.ativo) { %>
-                    <span class="badge-status badge-status--active">Ativo</span>
+                      <span class="badge-status badge-status--active">Ativo</span>
                     <% } else { %>
-                    <span class="badge-status badge-status--inactive">Inativo</span>
+                      <span class="badge-status badge-status--inactive">Inativo</span>
                     <% } %>
-                </td>
+                  </td>
+
+                  <% if (user && user.isAdmin) { %>
+                    <td>
+                      <a class="btn-secondary" href="/users/<%= encodeURIComponent(u.email) %>/edit">Editar</a>
+                      <!-- Se você criar rota delete, descomenta:
+                      <form method="POST" action="/users/<%= encodeURIComponent(u.email) %>/delete" style="display:inline;">
+                        <button class="btn-secondary" type="submit">Excluir</button>
+                      </form>
+                      -->
+                    </td>
+                  <% } %>
                 </tr>
-            <% }) %>
+              <% }) %>
+
             <% } %>
-            </tbody>
+          </tbody>
         </table>
       </div>
     </section>
