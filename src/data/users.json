@@ -1,53 +1,234 @@
 [
   {
-    "nome": "mestre",
-    "cpf": null,
-    "email": "mestre@bnel.com.br",
-    "passwordHash": "$2b$10$x1dGbmBDOLVwxc0iKJPt7uXfcE3I5cocdHQbS3cbCZ0qRj46MAOCq",
-    "departamento": [],
-    "relatorios": [
-      "PLEX",
-      "GDR",
-      "UGB"
-    ],
-    "ativo": true,
-    "isAdmin": true,
-    "tipoPessoa": "PJ",
-    "departamentos": []
-  },
-  {
     "nome": "ELTON ALVES",
-    "cpf": "07468951357",
     "email": "elton@bnel.com.br",
-    "passwordHash": "$2b$10$8Spd.1YVV4CY64QkBj3AZO0UgefX41Z1K6IZhS6GvO8FJR4XSdrS.",
-    "departamentos": [],
+    "passwordHash": "$2b$10$zkbbtT95ZbIWb7TSlkU8pu8PZWPB9AprBvb8gHw5TVp751t0Bdzpu",
+    "tipoPessoa": "PF",
+    "cpf": "07468951357",
+    "departamentos": [
+      "TI",
+      "OPERAÇÃO",
+      "SCON",
+      "QSMA",
+      "GESTÃO CONTROLADORIA",
+      "BACK",
+      "JURÍDICO",
+      "DHO",
+      "FINANCEIRO",
+      "CONTABILIDADE",
+      "DP",
+      "INOVAÇÃO G&G",
+      "FISCAL",
+      "ORÇAMENTO",
+      "COMERCIAL",
+      "COMPLIANCE",
+      "COMERCIAL, MKT"
+    ],
     "relatorios": [
       "PLEX",
       "GDR",
       "UGB"
     ],
     "ativo": true,
-    "tipoPessoa": "PF",
-    "isAdmin": false
+    "isAdmin": true
   },
   {
     "nome": "ABNER COSTA",
-    "cpf": "61148625380",
     "email": "abner@bnel.com.br",
-    "passwordHash": "$2b$10$TH.Lfrl6gO7jr8q9sbFqJ.6Ge.mX.wKijBeygmll/jy7e.hpA68hi",
+    "passwordHash": "$2b$10$Il6rk0IXqmznMwlEQkjOceDqDeb0GEUdrQzxgHZpe55doNo1cM84S",
+    "tipoPessoa": "PF",
+    "cpf": "61148625380",
     "departamentos": [
       "TI"
     ],
     "relatorios": [
       "PLEX"
     ],
-    "ativo": true
+    "ativo": true,
+    "isAdmin": false
+  },
+  {
+    "nome": "DANIEL ANGELO",
+    "email": "daniel@bnel.com.br",
+    "passwordHash": "$2b$10$V92IKeMOFlXliwxa6QBB1.bwWbLMw9k4WEQ8hZKFRffs5aRRg98rW",
+    "tipoPessoa": "PF",
+    "cpf": "60033208344",
+    "departamentos": [
+      "DP"
+    ],
+    "relatorios": [
+      "PLEX"
+    ],
+    "ativo": true,
+    "isAdmin": false
+  },
+  {
+    "nome": "RICARDO COSTA DOS SANTOS",
+    "email": "ricardo@bnel.com.br",
+    "passwordHash": "$2b$10$0dG2y23MYoeTCoeGwaitietYm3Nrwb35Catg7Aw.c8IdE1W3v7sYG",
+    "tipoPessoa": "PF",
+    "cpf": "04345161398",
+    "departamentos": [
+      "DP"
+    ],
+    "relatorios": [
+      "PLEX"
+    ],
+    "ativo": true,
+    "isAdmin": false
+  },
+  {
+    "nome": "LEIVA MESQUITA",
+    "email": "leiva@bnel.com.br",
+    "passwordHash": "$2b$10$xKa6IQTpobtSZobs7.SequWsN7nNnVytMkOpkY19md1Er8ZXzDcY2",
+    "tipoPessoa": "PF",
+    "cpf": "01482252333",
+    "departamentos": [
+      "DP"
+    ],
+    "relatorios": [
+      "PLEX"
+    ],
+    "ativo": true,
+    "isAdmin": false
+  },
+  {
+    "nome": "JEFFERSON OLIVEIRA",
+    "email": "jefferson.oliveira@bnel.com.br",
+    "passwordHash": "$2b$10$woncLZBzfCqz7x2H3RDhauXK8AH1HcYJUTnamfwjYmBKsnYDKPDFi",
+    "tipoPessoa": "PJ",
+    "cpf": null,
+    "departamentos": [
+      "TI",
+      "OPERAÇÃO",
+      "SCON",
+      "QSMA",
+      "GESTÃO CONTROLADORIA",
+      "BACK",
+      "JURÍDICO",
+      "DHO",
+      "FINANCEIRO",
+      "CONTABILIDADE",
+      "DP",
+      "INOVAÇÃO G&G",
+      "FISCAL",
+      "ORÇAMENTO",
+      "COMERCIAL",
+      "COMPLIANCE",
+      "COMERCIAL, MKT"
+    ],
+    "relatorios": [
+      "PLEX",
+      "GDR",
+      "UGB"
+    ],
+    "ativo": true,
+    "isAdmin": true
+  },
+  {
+    "nome": "GIRLEISON DE OLIVEIRA ALMEIDA",
+    "email": "girleison@bnel.com.br",
+    "passwordHash": "$2b$10$qRdhAwTmuTwznGSfnxsew.WUTekt5GIoejyQ7Pf7IJUh3Dfxb5kG6",
+    "tipoPessoa": "PF",
+    "cpf": "04771864322",
+    "departamentos": [
+      "DP"
+    ],
+    "relatorios": [
+      "PLEX"
+    ],
+    "ativo": true,
+    "isAdmin": false
+  },
+  {
+    "nome": "LINDEMBERG RIBEIRO DA SILVA",
+    "email": "lindemberg@bnel.com.br",
+    "passwordHash": "$2b$10$/J2ecbr/t/d1yF0qCKGvQOFdpseVejtCCwBF2PTZoCIE3Cd9mlfAm",
+    "tipoPessoa": "PF",
+    "cpf": "03322497356",
+    "departamentos": [
+      "DP"
+    ],
+    "relatorios": [
+      "PLEX",
+      "GDR",
+      "UGB"
+    ],
+    "ativo": true,
+    "isAdmin": false
+  },
+  {
+    "nome": "LEA PEREIRA",
+    "email": "lea@bnel.com.br",
+    "passwordHash": "$2b$10$Gjvyp2XWWCdOAXVr5dGIOeRw.PAv9a008Y3GeSn09GOFsqap4wO0S",
+    "tipoPessoa": "PJ",
+    "cpf": null,
+    "departamentos": [
+      "DHO",
+      "DP",
+      "INOVAÇÃO G&G"
+    ],
+    "relatorios": [
+      "PLEX",
+      "GDR",
+      "UGB"
+    ],
+    "ativo": true,
+    "isAdmin": false
+  },
+  {
+    "nome": "BRUNO AIRES",
+    "email": "bruno@bnel.com.br",
+    "passwordHash": "$2b$10$pGXM0EJN7iHU/gT90YlSBeviq1hkklbIn1kmvdtevwpjAKCuRn/5K",
+    "tipoPessoa": "PF",
+    "cpf": "02263210377",
+    "departamentos": [
+      "DHO"
+    ],
+    "relatorios": [
+      "PLEX"
+    ],
+    "ativo": true,
+    "isAdmin": false
+  },
+  {
+    "nome": "ELISANGELA ARAUJO DA SILVA",
+    "email": "elisangela@bnel.com.br",
+    "passwordHash": "$2b$10$I0ROhLz5MeAVLBrVAE13qO8YMq87.bAoRahrVr/7LlS4hOyBN/Wo2",
+    "tipoPessoa": "PJ",
+    "cpf": null,
+    "departamentos": [
+      "DHO"
+    ],
+    "relatorios": [
+      "PLEX",
+      "GDR",
+      "UGB"
+    ],
+    "ativo": true,
+    "isAdmin": false
+  },
+  {
+    "nome": "DANIEL TARSIS",
+    "email": "tarsis@bnel.com.br",
+    "passwordHash": "$2b$10$KZV57C8Ih9i8VrgSOEote.sEjFvDqz7JyBuDs7tj9CHD0PzBWQhpe",
+    "tipoPessoa": "PF",
+    "cpf": "70534049435",
+    "departamentos": [
+      "TI"
+    ],
+    "relatorios": [
+      "PLEX"
+    ],
+    "ativo": true,
+    "isAdmin": false
   },
   {
     "nome": "GLEYSON MESQUITA CARDOSO",
-    "cpf": "99999999999",
     "email": "gleyson@bnel.com.br",
-    "passwordHash": "$2b$10$ahS6.vN8HchInQgQj0yZmOpcs2rK7fnU2DvirIBdOAck85IIYrekq",
+    "passwordHash": "$2b$10$p1Tj8saW9nCnf50nEahk7.e1PvgOlC0FBn31lqB2R4Uy17YjZBHDC",
+    "tipoPessoa": "PJ",
+    "cpf": null,
     "departamentos": [
       "TI"
     ],
@@ -56,21 +237,84 @@
       "GDR",
       "UGB"
     ],
-    "ativo": true
+    "ativo": true,
+    "isAdmin": false
   },
   {
-    "nome": "TESTE",
-    "cpf": "12345678912",
-    "email": "teste@empresa.com",
-    "passwordHash": "$2b$10$bEZCgt/1WCfE.WvRzq0GWudbhfdyfJ0YQumbYzGjM3ykwuW1jC34i",
+    "nome": "ALLICIA LIMA",
+    "email": "allicia@bnel.com.br",
+    "passwordHash": "$2b$10$QLdZSDLsmEXynlRvrNpX9egaEYfZD9QfDAaM2z6PYlMnEXnyhzoDa",
+    "tipoPessoa": "PF",
+    "cpf": "07391533319",
     "departamentos": [
-      "ADM"
+      "DHO"
     ],
     "relatorios": [
-      "GDR"
+      "PLEX"
     ],
     "ativo": true,
+    "isAdmin": false
+  },
+  {
+    "nome": "SAMARA ACÁCIO",
+    "email": "samara@bnel.com.br",
+    "passwordHash": "$2b$10$zLNFBZHhEug54vleZZvc2eG/giE//8uZ6mN7wnrIPOUvd1LqIvGsy",
     "tipoPessoa": "PF",
+    "cpf": "62566936390",
+    "departamentos": [
+      "TI"
+    ],
+    "relatorios": [
+      "PLEX"
+    ],
+    "ativo": true,
+    "isAdmin": false
+  },
+  {
+    "nome": "PEDRO IGOR",
+    "email": "pedro@bnel.com.br",
+    "passwordHash": "$2b$10$QpA/./EStY3kbjKAkx3.8.uQORW.v9gn.aM5lRNfbMob.0FbDffAq",
+    "tipoPessoa": "PF",
+    "cpf": "07265785339",
+    "departamentos": [
+      "TI"
+    ],
+    "relatorios": [
+      "PLEX"
+    ],
+    "ativo": true,
+    "isAdmin": false
+  },
+  {
+    "nome": "AUDISIO GOMES NETTO",
+    "email": "audisio@bnel.com.br",
+    "passwordHash": "$2b$10$VqHxUAOt8fH5OijYFXlwgecE816vUNW1gti1xmlTOV4iUqpcgX3Sq",
+    "tipoPessoa": "PJ",
+    "cpf": null,
+    "departamentos": [
+      "TI"
+    ],
+    "relatorios": [
+      "PLEX",
+      "GDR",
+      "UGB"
+    ],
+    "ativo": true,
+    "isAdmin": false
+  },
+  {
+    "nome": "LUCIAN SANTOS",
+    "email": "lucian@bnel.com.br",
+    "passwordHash": "$2b$10$qnbhPCMd.hzD3TrZYGgOqOS5I/RI778ldl1FbXc/.DKVwjC5oahma",
+    "tipoPessoa": "PF",
+    "cpf": "09536632489",
+    "departamentos": [
+      "TI"
+    ],
+    "relatorios": [
+      "PLEX"
+    ],
+    "ativo": true,
     "isAdmin": false
   }
 ]

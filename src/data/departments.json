@@ -1,18 +1,70 @@
 [
   {
-    "id": "ADM",
-    "nome": "ADM"
+    "id": "TI",
+    "nome": "TI"
+  },
+  {
+    "id": "OPERAÇÃO",
+    "nome": "OPERAÇÃO"
+  },
+  {
+    "id": "SCON",
+    "nome": "SCON"
+  },
+  {
+    "id": "QSMA",
+    "nome": "QSMA"
+  },
+  {
+    "id": "GESTÃO CONTROLADORIA",
+    "nome": "GESTÃO CONTROLADORIA"
   },
   {
     "id": "BACK",
     "nome": "BACK"
   },
   {
+    "id": "JURÍDICO",
+    "nome": "JURÍDICO"
+  },
+  {
     "id": "DHO",
     "nome": "DHO"
   },
   {
-    "id": "TESTE",
-    "nome": "TESTE"
+    "id": "FINANCEIRO",
+    "nome": "FINANCEIRO"
+  },
+  {
+    "id": "CONTABILIDADE",
+    "nome": "CONTABILIDADE"
+  },
+  {
+    "id": "DP",
+    "nome": "DP"
+  },
+  {
+    "id": "INOVAÇÃO G&G",
+    "nome": "INOVAÇÃO G&G"
+  },
+  {
+    "id": "FISCAL",
+    "nome": "FISCAL"
+  },
+  {
+    "id": "ORÇAMENTO",
+    "nome": "ORÇAMENTO"
+  },
+  {
+    "id": "COMERCIAL",
+    "nome": "COMERCIAL"
+  },
+  {
+    "id": "COMPLIANCE",
+    "nome": "COMPLIANCE"
+  },
+  {
+    "id": "COMERCIAL, MKT",
+    "nome": "MARKETING"
   }
 ]
