@@ -209,6 +209,29 @@ async function loadReport(moduleKey) {
   }
 }
 
+// ===================== Mandar print para telegram =====================
+
+async function sendToTelegram(module) {
+  const resp = await fetch('/api/telegram/send-report', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ module })
+  });
+
+  if (!resp.ok) {
+    alert('Falha ao enviar para o Telegram.');
+    return;
+  }
+
+  alert('Enviado para o Telegram.');
+}
+
+// exemplo: ao clicar no botão
+document.getElementById('btnTelegram').addEventListener('click', () => {
+  sendToTelegram(currentModule);
+});
+
+
 // ===================== Sidebar =====================
 
 function setupSidebarNavigation() {

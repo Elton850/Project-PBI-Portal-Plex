@@ -52,5 +52,6 @@ async function getEmbedConfigForModule(moduleKey) {
 }
 
 module.exports = {
+  getAccessToken,
   getEmbedConfigForModule
 };

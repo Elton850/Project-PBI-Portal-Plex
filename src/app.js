@@ -9,6 +9,7 @@ const dashboardRoutes = require('./routes/dashboardRoutes');
 const powerbiRoutes = require('./routes/powerbiRoutes');
 const usersRoutes = require('./routes/usersRoutes');
 const departmentsRoutes = require('./routes/departmentsRoutes');
+const telegramRoutes = require('./routes/telegramRoutes');
 
 const app = express();
 
@@ -20,6 +21,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Rotas
 app.use(authRoutes);
@@ -27,6 +30,7 @@ app.use(dashboardRoutes);
 app.use(powerbiRoutes);
 app.use(usersRoutes);
 app.use(departmentsRoutes);
+app.use(telegramRoutes);
 
 // Raiz
 app.get('/', (req, res) => {
