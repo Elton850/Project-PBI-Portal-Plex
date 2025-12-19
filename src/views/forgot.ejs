@@ -11,7 +11,7 @@
     <h1>Reset de senha</h1>
     <p>
       PF: informe o CPF.<br />
-      PJ: informe o e-mail.
+      PJ: informe o e-mail + token.
     </p>
 
     <form method="POST" action="/forgot">
@@ -20,6 +20,9 @@
 
       <label for="email">E-mail (PJ)</label>
       <input id="email" name="email" type="email" placeholder="email@empresa.com" />
+
+      <label for="tokenPJ">Token (PJ)</label>
+      <input id="tokenPJ" name="tokenPJ" placeholder="Token fornecido pelo admin" />
 
       <label for="novaSenha">Nova senha</label>
       <input id="novaSenha" name="novaSenha" type="password" required />

@@ -69,7 +69,7 @@
               <th>Relatórios</th>
               <th>Status</th>
               <% if (user && user.isAdmin) { %>
-                <th style="width:180px;">Ações</th>
+                <th style="width:220px;">Ações</th>
               <% } %>
             </tr>
           </thead>
@@ -117,11 +117,16 @@
                   <% if (user && user.isAdmin) { %>
                     <td>
                       <a class="btn-secondary" href="/users/<%= encodeURIComponent(u.email) %>/edit">Editar</a>
-                      <!-- Se você criar rota delete, descomenta:
-                      <form method="POST" action="/users/<%= encodeURIComponent(u.email) %>/delete" style="display:inline;">
-                        <button class="btn-secondary" type="submit">Excluir</button>
-                      </form>
-                      -->
+
+                      <% if ((u.tipoPessoa || 'PF').toUpperCase() === 'PJ') { %>
+                        <form method="POST" action="/users/<%= u.email %>/reset-token" style="display:inline;">
+                          <button class="btn-secondary" type="submit">Gerar token</button>
+                        </form>
+
+                        <div style="margin-top:6px; font-size:0.85rem; opacity:0.9;">
+                          Token PJ: <strong><%= u.resetToken ? u.resetToken : '-' %></strong>
+                        </div>
+                      <% } %>
                     </td>
                   <% } %>
                 </tr>

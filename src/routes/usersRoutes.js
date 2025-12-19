@@ -1,10 +1,14 @@
 // src/routes/usersRoutes.js
 const express = require('express');
 const bcrypt = require('bcryptjs');
+
 const { authRequired } = require('../middlewares/authMiddleware');
 const { adminOnly } = require('../middlewares/adminMiddleware');
+
 const { getUsers, saveUsers } = require('../config/authConfig');
 const { getDepartments } = require('../config/departmentsConfig');
+
+const { generateResetToken } = require('../utils/tokenUtil');
 
 const router = express.Router();
 
@@ -28,6 +32,7 @@ router.get('/users/new', authRequired, adminOnly, (req, res) => {
 // ===================== NOVO (CREATE) =====================
 router.post('/users/new', authRequired, adminOnly, async (req, res) => {
   const departments = getDepartments();
+
   try {
     const users = getUsers();
 
@@ -77,7 +82,8 @@ router.post('/users/new', authRequired, adminOnly, async (req, res) => {
           departments
         });
       }
-      const cpfEmUso = users.some(u => u.tipoPessoa !== 'PJ' && u.cpf === cpfClean);
+
+      const cpfEmUso = users.some(u => (u.tipoPessoa || 'PF') !== 'PJ' && u.cpf === cpfClean);
       if (cpfEmUso) {
         return res.status(400).render('userForm', {
           user: req.user,
@@ -90,6 +96,9 @@ router.post('/users/new', authRequired, adminOnly, async (req, res) => {
 
     const passwordHash = await bcrypt.hash(senha, 10);
 
+    // token PJ (para reset de senha)
+    const resetToken = (tipoPessoa === 'PJ') ? generateResetToken() : null;
+
     users.push({
       nome,
       email,
@@ -99,7 +108,8 @@ router.post('/users/new', authRequired, adminOnly, async (req, res) => {
       departamentos,
       relatorios,
       ativo,
-      isAdmin
+      isAdmin,
+      resetToken
     });
 
     saveUsers(users);
@@ -133,6 +143,7 @@ router.get('/users/:email/edit', authRequired, adminOnly, (req, res) => {
 // ===================== EDIT (SAVE) =====================
 router.post('/users/:email/edit', authRequired, adminOnly, async (req, res) => {
   const departments = getDepartments();
+
   try {
     const users = getUsers();
     const idx = users.findIndex(x => x.email === req.params.email);
@@ -185,8 +196,9 @@ router.post('/users/:email/edit', authRequired, adminOnly, async (req, res) => {
           departments
         });
       }
+
       const cpfEmUso = users.some(
-        (u, i) => i !== idx && u.tipoPessoa !== 'PJ' && u.cpf === cpfClean
+        (u, i) => i !== idx && (u.tipoPessoa || 'PF') !== 'PJ' && u.cpf === cpfClean
       );
       if (cpfEmUso) {
         return res.status(400).render('userForm', {
@@ -208,6 +220,15 @@ router.post('/users/:email/edit', authRequired, adminOnly, async (req, res) => {
     users[idx].ativo = ativo;
     users[idx].isAdmin = isAdmin;
 
+    // token PJ (garantir que exista para PJ)
+    if (tipoPessoa === 'PJ' && !users[idx].resetToken) {
+      users[idx].resetToken = generateResetToken();
+    }
+    if (tipoPessoa !== 'PJ') {
+      users[idx].resetToken = null;
+    }
+
+    // senha opcional (só altera se preenchida)
     if (senha && senha.length >= 4) {
       users[idx].passwordHash = await bcrypt.hash(senha, 10);
     }
@@ -223,6 +244,23 @@ router.post('/users/:email/edit', authRequired, adminOnly, async (req, res) => {
       departments
     });
   }
+});
+
+// ===================== PJ: REGERAR TOKEN =====================
+router.post('/users/:email/reset-token', authRequired, adminOnly, (req, res) => {
+  const emailParam = decodeURIComponent(req.params.email);
+
+  const users = getUsers();
+  const idx = users.findIndex(u => u.email === emailParam);
+  if (idx === -1) return res.redirect('/users');
+
+  const tipo = (users[idx].tipoPessoa || 'PF').toUpperCase();
+  if (tipo !== 'PJ') return res.redirect('/users');
+
+  users[idx].resetToken = generateResetToken();
+  saveUsers(users);
+
+  return res.redirect('/users');
 });
 
 module.exports = router;
